@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spro Admin - Licenças CW Scanner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+            color: white;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Menu Lateral */
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            background: linear-gradient(to right, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #94a3b8;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* Área de Conteúdo Principal */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header-section h1 {
+            font-size: 2rem;
+            color: #f8fafc;
+        }
+
+        .btn-google-add {
+            background: white;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-google-add:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        .btn-google-add img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Cartão e Tabela */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        td {
+            color: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .email-google {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .status.active {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status.expired {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .action-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            margin-right: 5px;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-revoke {
+            border-color: rgba(239, 68, 68, 0.5);
+            color: #ef4444;
+        }
+
+        .btn-revoke:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Menu Lateral -->
+    <div class="sidebar">
+        <h2>Spro Admin</h2>
+        <a href="index.html" class="nav-link">🏠 Página Inicial</a>
+        <a href="#" class="nav-link active">🔑 Licenças CW Scanner</a>
+        <a href="#" class="nav-link">⚙️ Configurações</a>
+        <a href="#" class="nav-link" style="margin-top: auto;">🚪 Sair</a>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+        <div class="header-section">
+            <div>
+                <h1>Gestão de Licenças</h1>
+                <p style="color: #94a3b8; margin-top: 5px;">Controle de acesso autenticado via Google</p>
+            </div>
+            <!-- Botão para adicionar apenas o e-mail, sem senha -->
+            <button class="btn-google-add">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo">
+                Autorizar E-mail Google
+            </button>
+        </div>
+
+        <div class="glass-panel">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cliente / E-mail Autenticado</th>
+                        <th>Status da Licença</th>
+                        <th>Validade</th>
+                        <th>Máquinas (Hardware ID)</th>
+                        <th>Ações Administrativas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Exemplo de Cliente Ativo via Google -->
+                    <tr>
+                        <td>
+                            <div class="email-google">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" style="width: 14px;">
+                                eng.marcos@gmail.com
+                            </div>
+                        </td>
+                        <td><span class="status active">ATIVA</span></td>
+                        <td>31/12/2026</td>
+                        <td>1 / 2 autorizadas</td>
+                        <td>
+                            <button class="action-btn">Editar Limites</button>
+                            <button class="action-btn btn-revoke">Revogar Acesso</button>
+                        </td>
+                    </tr>
+                    <!-- Exemplo de Cliente Expirado via Google -->
+                    <tr>
+                        <td>
+                            <div class="email-google">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="G" style="width: 14px;">
+                                projetos.alfa@gmail.com
+                            </div>
+                        </td>
+                        <td><span class="status expired">EXPIRADA</span></td>
+                        <td>15/05/2025</td>
+                        <td>2 / 2 autorizadas</td>
+                        <td>
+                            <button class="action-btn">Renovar Data</button>
+                            <button class="action-btn btn-revoke">Limpar Máquinas</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
